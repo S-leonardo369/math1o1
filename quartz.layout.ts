@@ -21,11 +21,6 @@ export const defaultContentPageLayout: PageLayout = {
       condition: (page) => page.fileData.slug !== "index",
     }),
     Component.ArticleTitle(),
-    // WhatsApp share button — shown on all pages except the homepage
-    Component.ConditionalRender({
-      component: Component.WhatsAppShare(),
-      condition: (page) => page.fileData.slug !== "index",
-    }),
     Component.ContentMeta(),
     Component.TagList(),
   ],
