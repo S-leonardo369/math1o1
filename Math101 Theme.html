@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Math101 — Quartz Theme Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+<script>
+MathJax = {
+  tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$']] },
+  options: { skipHtmlTags: ['script','noscript','style','textarea'] }
+};
+</script>
+
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  /* — Background layers — */
+  --bg-base:        #FAF8F5;
+  --bg-surface:     #F2EDE7;
+  --bg-elevated:    #FFFFFF;
+
+  /* — Text — */
+  --text-primary:   #2A201C;
+  --text-secondary: #6B5E57;
+  --text-muted:     #9A8C85;
+  --text-link:      #0C7075;
+  --text-link-hover:#0A5D61;
+
+  /* — Accent (teal) — */
+  --accent:         #0C7075;
+  --accent-light:   #D6EFEF;
+  --accent-mid:     #5BB3B7;
+
+  /* — Warning (amber) — */
+  --warning:        #B5600D;
+  --warning-light:  #FDF0E4;
+
+  /* — Border — */
+  --border:         #E3D9D1;
+  --border-strong:  #C9BDB5;
+
+  /* — Code — */
+  --code-bg:        #F0EBE5;
+  --code-text:      #2A201C;
+
+  /* — Tag — */
+  --tag-bg:         #E8F5F5;
+  --tag-text:       #0C7075;
+
+  /* — Sidebar — */
+  --sidebar-bg:     #FAF8F5;
+  --sidebar-active: #E8F5F5;
+
+  /* — Nav — */
+  --nav-bg:         #FAF8F5;
+  --nav-border:     #E3D9D1;
+
+  /* — Graph — */
+  --graph-bg:       #F2EDE7;
+  --graph-node:     #0C7075;
+  --graph-edge:     #C9BDB5;
+  --graph-node-active: #0A5D61;
+
+  /* — Typography — */
+  --font-heading:   'DM Serif Display', Georgia, serif;
+  --font-body:      'Inter', system-ui, sans-serif;
+  --font-mono:      'JetBrains Mono', 'Fira Code', monospace;
+
+  /* — Type scale — */
+  --text-xs:    0.75rem;
+  --text-sm:    0.875rem;
+  --text-base:  1rem;
+  --text-lg:    1.125rem;
+  --text-xl:    1.25rem;
+  --text-2xl:   1.5rem;
+  --text-3xl:   1.875rem;
+  --text-4xl:   2.25rem;
+
+  /* — Spacing scale — */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* — Border radius — */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-full: 9999px;
+
+  /* — Shadows — */
+  --shadow-sm:  0 1px 3px rgba(42,32,28,0.08);
+  --shadow-md:  0 4px 12px rgba(42,32,28,0.10);
+
+  /* — Transitions — */
+  --transition: 180ms ease;
+}
+
+[data-theme="dark"] {
+  --bg-base:        #1B1714;
+  --bg-surface:     #252019;
+  --bg-elevated:    #2E2820;
+
+  --text-primary:   #EDE8E2;
+  --text-secondary: #A89E96;
+  --text-muted:     #6E6460;
+  --text-link:      #4BBFC4;
+  --text-link-hover:#6ECDD1;
+
+  --accent:         #4BBFC4;
+  --accent-light:   #1A3335;
+  --accent-mid:     #2A8F93;
+
+  --warning:        #E09050;
+  --warning-light:  #2A1E10;
+
+  --border:         #352E28;
+  --border-strong:  #4A4038;
+
+  --code-bg:        #252019;
+  --code-text:      #EDE8E2;
+
+  --tag-bg:         #1A3335;
+  --tag-text:       #4BBFC4;
+
+  --sidebar-bg:     #1B1714;
+  --sidebar-active: #1A3335;
+
+  --nav-bg:         #1B1714;
+  --nav-border:     #352E28;
+
+  --graph-bg:       #252019;
+  --graph-node:     #4BBFC4;
+  --graph-edge:     #4A4038;
+  --graph-node-active: #6ECDD1;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.75;
+  transition: background var(--transition), color var(--transition);
+  min-height: 100vh;
+}
+
+a { color: var(--text-link); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--text-link-hover); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ============================================================
+   TOP NAV
+   ============================================================ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--nav-border);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-6);
+  gap: var(--space-4);
+  backdrop-filter: blur(8px);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.nav-brand {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+}
+.nav-brand:hover { color: var(--accent); text-decoration: none; }
+
+.nav-search {
+  flex: 1;
+  max-width: 320px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+}
+.nav-search:hover { border-color: var(--accent); }
+.nav-search svg { opacity: 0.5; flex-shrink: 0; }
+
+.nav-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.icon-btn {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.icon-btn:hover { background: var(--bg-surface); color: var(--text-primary); }
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.layout {
+  display: grid;
+  grid-template-columns: 260px 1fr 260px;
+  min-height: calc(100vh - 56px);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   LEFT SIDEBAR — EXPLORER
+   ============================================================ */
+.sidebar-left {
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  padding: var(--space-6) var(--space-4);
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.sidebar-section-label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sidebar-section-label svg { opacity: 0.6; cursor: pointer; }
+
+.explorer-tree {
+  list-style: none;
+  font-size: var(--text-sm);
+}
+
+.tree-folder {
+  margin-bottom: var(--space-1);
+}
+
+.tree-folder-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  transition: background var(--transition);
+}
+.tree-folder-label:hover { background: var(--bg-surface); color: var(--text-primary); }
+.tree-folder-label svg { color: var(--accent); flex-shrink: 0; }
+.tree-chevron { margin-left: auto; transition: transform 200ms; }
+.tree-chevron.open { transform: rotate(90deg); }
+
+.tree-children {
+  padding-left: var(--space-5);
+  margin-top: var(--space-1);
+  border-left: 1px solid var(--border);
+  margin-left: 14px;
+}
+
+.tree-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+  text-decoration: none;
+}
+.tree-item:hover { background: var(--bg-surface); color: var(--text-primary); text-decoration: none; }
+.tree-item.active {
+  background: var(--sidebar-active);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ============================================================
+   CENTER CONTENT
+   ============================================================ */
+.content-col {
+  padding: var(--space-10) var(--space-12);
+  max-width: 760px;
+  width: 100%;
+  justify-self: center;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--space-6);
+}
+.breadcrumb a { color: var(--text-muted); }
+.breadcrumb a:hover { color: var(--accent); text-decoration: none; }
+.breadcrumb-sep { opacity: 0.4; font-size: 0.7em; }
+
+/* Post header */
+.post-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--space-5);
+}
+.post-meta-dot { opacity: 0.4; }
+
+.tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--space-3);
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: background var(--transition);
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+.tag:hover { background: var(--accent-light); border-color: var(--accent); text-decoration: none; }
+
+/* Divider */
+.post-divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: var(--space-8);
+}
+
+/* Body content */
+.prose { color: var(--text-primary); }
+
+.prose p {
+  font-size: var(--text-base);
+  line-height: 1.8;
+  margin-bottom: var(--space-5);
+  color: var(--text-primary);
+}
+
+.prose h2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  line-height: 1.25;
+  color: var(--text-primary);
+  margin-top: var(--space-12);
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.015em;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--space-3);
+}
+
+.prose h3 {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  line-height: 1.3;
+  color: var(--text-primary);
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.01em;
+}
+
+.prose strong { font-weight: 600; color: var(--text-primary); }
+.prose em { font-style: italic; color: var(--text-secondary); }
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--code-bg);
+  color: var(--code-text);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+/* LaTeX display */
+.math-display {
+  overflow-x: auto;
+  margin: var(--space-6) 0;
+  padding: var(--space-5) var(--space-6);
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  text-align: center;
+  font-size: 1.1em;
+}
+
+/* Callouts */
+.callout {
+  border-radius: var(--radius-md);
+  margin: var(--space-6) 0;
+  overflow: hidden;
+}
+
+.callout-tip {
+  background: var(--accent-light);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.callout-warning {
+  background: var(--warning-light);
+  border: 1px solid color-mix(in srgb, var(--warning) 30%, transparent);
+}
+
+.callout-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.callout-tip .callout-header { color: var(--accent); }
+.callout-warning .callout-header { color: var(--warning); }
+
+.callout-body {
+  padding: 0 var(--space-4) var(--space-4);
+  font-size: var(--text-sm);
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+/* Backlinks */
+.backlinks-section {
+  margin-top: var(--space-16);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--border);
+}
+
+.backlinks-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-4);
+}
+
+.backlinks-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.backlink-card {
+  padding: var(--space-4);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  text-decoration: none;
+  display: block;
+}
+.backlink-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+}
+.backlink-card-title {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: var(--space-1);
+}
+.backlink-card-preview {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============================================================
+   RIGHT SIDEBAR
+   ============================================================ */
+.sidebar-right {
+  border-left: 1px solid var(--border);
+  padding: var(--space-6) var(--space-4);
+  position: sticky;
+  top: 56px;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+  background: var(--sidebar-bg);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.sidebar-widget {
+  margin-bottom: var(--space-8);
+}
+
+.sidebar-widget-title {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Graph view */
+.graph-view {
+  background: var(--graph-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  height: 160px;
+  position: relative;
+  overflow: hidden;
+  transition: background var(--transition);
+}
+
+.graph-view svg { width: 100%; height: 100%; }
+
+/* TOC */
+.toc-list {
+  list-style: none;
+  font-size: var(--text-sm);
+  border-left: 2px solid var(--border);
+}
+
+.toc-item {
+  padding: 3px var(--space-3);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+  border-left: 2px solid transparent;
+  margin-left: -2px;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+.toc-item:hover { color: var(--accent); }
+.toc-item.active {
+  color: var(--accent);
+  border-left-color: var(--accent);
+  font-weight: 500;
+}
+.toc-item-h3 {
+  padding-left: calc(var(--space-3) + var(--space-4));
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+.toc-item-h3.active { color: var(--accent); }
+
+/* Sidebar backlinks */
+.sidebar-backlink {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--accent);
+  padding: var(--space-1) 0;
+  border-bottom: 1px solid var(--border);
+  transition: color var(--transition);
+  text-decoration: none;
+}
+.sidebar-backlink:last-child { border-bottom: none; }
+.sidebar-backlink:hover { color: var(--text-link-hover); text-decoration: none; }
+
+/* ============================================================
+   DESIGN TOKENS PANEL (bottom)
+   ============================================================ */
+.tokens-panel {
+  background: var(--bg-surface);
+  border-top: 2px solid var(--accent);
+  padding: var(--space-10) var(--space-12);
+  font-family: var(--font-mono);
+}
+
+.tokens-panel-header {
+  font-family: var(--font-body);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.tokens-badge {
+  font-size: var(--text-xs);
+  font-family: var(--font-body);
+  background: var(--accent);
+  color: white;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  font-weight: 500;
+}
+.tokens-subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--space-8);
+}
+
+.tokens-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-8);
+}
+
+.token-group-title {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.token-block {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.token-block pre {
+  padding: var(--space-4);
+  font-size: 0.78rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.token-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.swatch-dot {
+  width: 40px; height: 40px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+.swatch-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* ============================================================
+   TWEAKS PANEL
+   ============================================================ */
+.tweaks-panel {
+  position: fixed;
+  bottom: var(--space-4);
+  right: var(--space-4);
+  z-index: 9999;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-4);
+  width: 240px;
+  display: none;
+  font-size: var(--text-sm);
+  transition: background var(--transition);
+}
+
+.tweaks-panel.visible { display: block; }
+
+.tweaks-title {
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--space-3);
+}
+
+.tweak-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+  color: var(--text-secondary);
+}
+
+.tweak-label { font-size: var(--text-xs); }
+
+.tweak-select {
+  font-size: var(--text-xs);
+  padding: 3px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.tweak-toggle {
+  width: 36px; height: 20px;
+  background: var(--border);
+  border-radius: var(--radius-full);
+  position: relative;
+  cursor: pointer;
+  border: none;
+  transition: background 200ms;
+  flex-shrink: 0;
+}
+.tweak-toggle.on { background: var(--accent); }
+.tweak-toggle::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 14px; height: 14px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 200ms;
+}
+.tweak-toggle.on::after { transform: translateX(16px); }
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+/* Smooth scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+
+/* MathJax overrides */
+mjx-container { color: var(--text-primary) !important; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     TOP NAV
+     ============================================================ -->
+<nav class="nav">
+  <a href="Math101 Homepage.html" class="nav-brand">Math101</a>
+
+  <div class="nav-search">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    Search or press /
+    <span style="margin-left:auto;font-size:0.7rem;background:var(--bg-elevated);border:1px solid var(--border);padding:1px 6px;border-radius:4px;color:var(--text-muted)">/</span>
+  </div>
+
+  <div class="nav-actions">
+    <button class="icon-btn" onclick="toggleDark()" title="Toggle dark mode" id="darkToggleBtn">
+      <svg id="darkIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+    <button class="icon-btn" title="Reader mode">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ============================================================
+     3-COLUMN LAYOUT
+     ============================================================ -->
+<div class="layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar-left">
+    <div class="sidebar-section-label">
+      Explorer
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </div>
+
+    <ul class="explorer-tree">
+      <!-- Folder: Sets & Logic -->
+      <li class="tree-folder">
+        <div class="tree-folder-label" onclick="toggleFolder(this)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          Sets &amp; Logic
+          <svg class="tree-chevron open" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+        <ul class="tree-children" id="folder-sets">
+          <li><a class="tree-item active" href="#">Introduction to Sets</a></li>
+          <li><a class="tree-item" href="#">Set Operations</a></li>
+          <li><a class="tree-item" href="#">Venn Diagrams</a></li>
+          <li><a class="tree-item" href="#">Relations &amp; Functions</a></li>
+        </ul>
+      </li>
+
+      <!-- Folder: Algebra -->
+      <li class="tree-folder">
+        <div class="tree-folder-label" onclick="toggleFolder(this)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          Algebra
+          <svg class="tree-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+        <ul class="tree-children" id="folder-algebra" style="display:none">
+          <li><a class="tree-item" href="#">Quadratic Equations</a></li>
+          <li><a class="tree-item" href="#">Complex Numbers</a></li>
+          <li><a class="tree-item" href="#">Sequences &amp; Series</a></li>
+          <li><a class="tree-item" href="#">Binomial Theorem</a></li>
+        </ul>
+      </li>
+
+      <!-- Folder: Calculus -->
+      <li class="tree-folder">
+        <div class="tree-folder-label" onclick="toggleFolder(this)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          Calculus
+          <svg class="tree-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+        <ul class="tree-children" id="folder-calc" style="display:none">
+          <li><a class="tree-item" href="#">Limits &amp; Continuity</a></li>
+          <li><a class="tree-item" href="#">Differentiation</a></li>
+          <li><a class="tree-item" href="#">Integration Basics</a></li>
+        </ul>
+      </li>
+
+      <!-- Folder: Trigonometry -->
+      <li class="tree-folder">
+        <div class="tree-folder-label" onclick="toggleFolder(this)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          Trigonometry
+          <svg class="tree-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+        <ul class="tree-children" id="folder-trig" style="display:none">
+          <li><a class="tree-item" href="#">Trig Ratios</a></li>
+          <li><a class="tree-item" href="#">Trig Identities</a></li>
+          <li><a class="tree-item" href="#">Inverse Functions</a></li>
+        </ul>
+      </li>
+
+      <!-- Folder: Statistics -->
+      <li class="tree-folder">
+        <div class="tree-folder-label" onclick="toggleFolder(this)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          Statistics &amp; Probability
+          <svg class="tree-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+        <ul class="tree-children" id="folder-stat" style="display:none">
+          <li><a class="tree-item" href="#">Measures of Central Tendency</a></li>
+          <li><a class="tree-item" href="#">Permutations &amp; Combinations</a></li>
+          <li><a class="tree-item" href="#">Probability</a></li>
+        </ul>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- CENTER CONTENT -->
+  <main class="content-col">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="#">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="#">Sets &amp; Logic</a>
+      <span class="breadcrumb-sep">›</span>
+      <span style="color:var(--text-secondary)">Introduction to Sets</span>
+    </nav>
+
+    <!-- Title -->
+    <h1 class="post-title">Introduction to Sets</h1>
+
+    <!-- Meta -->
+    <div class="post-meta">
+      <span>5 min read</span>
+      <span class="post-meta-dot">·</span>
+      <span>April 20, 2026</span>
+      <span class="post-meta-dot">·</span>
+      <span>Class 11 · Chapter 1</span>
+    </div>
+
+    <!-- Tags -->
+    <div class="tags-row">
+      <a class="tag" href="#">sets</a>
+      <a class="tag" href="#">foundations</a>
+      <a class="tag" href="#">class-11</a>
+      <a class="tag" href="#">ncert</a>
+    </div>
+
+    <div class="post-divider"></div>
+
+    <!-- Body -->
+    <article class="prose" id="prose-content">
+
+      <p>
+        A <strong>set</strong> is simply a well-defined collection of distinct objects. Those objects are called the <em>elements</em> or <em>members</em> of the set. The idea is deceptively simple — but it turns out to be one of the most foundational ideas in all of mathematics.
+      </p>
+
+      <p>
+        We write sets using curly braces. For example, the set of the first three natural numbers is written as $A = \{1, 2, 3\}$. We say "1 belongs to A," written $1 \in A$. If an element is not in the set — say, 7 — we write $7 \notin A$.
+      </p>
+
+      <!-- TIP CALLOUT -->
+      <div class="callout callout-tip">
+        <div class="callout-header">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Tip — Roaster vs. Set-Builder
+        </div>
+        <div class="callout-body">
+          There are two common ways to describe a set. <strong>Roster form</strong> lists every element: $\{2, 4, 6, 8\}$. <strong>Set-builder form</strong> describes the rule: $\{x \mid x \text{ is even}, 1 \le x \le 8\}$. For finite sets, roster is fine; for infinite sets, set-builder is far more practical.
+        </div>
+      </div>
+
+      <h2 id="types-of-sets">Types of Sets</h2>
+
+      <p>
+        Not all sets are created equal. Here are the key types you will encounter in Class 11 and beyond.
+      </p>
+
+      <h3 id="empty-and-singleton">Empty Set &amp; Singleton</h3>
+
+      <p>
+        The <strong>empty set</strong> (or null set) $\emptyset = \{\}$ contains no elements at all. It is unique: there is exactly one empty set. A <strong>singleton</strong> is a set with exactly one element, like $\{0\}$ or $\{\emptyset\}$.
+      </p>
+
+      <!-- WARNING CALLOUT -->
+      <div class="callout callout-warning">
+        <div class="callout-header">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Watch out — $\emptyset$ vs $\{\emptyset\}$
+        </div>
+        <div class="callout-body">
+          $\emptyset$ and $\{\emptyset\}$ are <em>not</em> the same! The first has zero elements; the second has one element (that element happens to be the empty set). This trips up a lot of students — always check carefully.
+        </div>
+      </div>
+
+      <h2 id="set-operations">Set Operations</h2>
+
+      <p>
+        Given two sets $A$ and $B$, we define four fundamental operations. The <strong>union</strong> $A \cup B$ collects everything in either set; the <strong>intersection</strong> $A \cap B$ keeps only what they share; the <strong>difference</strong> $A \setminus B$ removes B's elements from A; and the <strong>complement</strong> $A'$ takes everything in the universal set that is not in A.
+      </p>
+
+      <h3 id="a-worked-example">A Worked Example</h3>
+
+      <p>
+        Let $A = \{1, 2, 3, 4\}$ and $B = \{3, 4, 5, 6\}$. Then:
+      </p>
+
+      <!-- DISPLAY MATH -->
+      <div class="math-display">
+        $$A \cup B = \{1,2,3,4,5,6\}, \qquad A \cap B = \{3, 4\}$$
+      </div>
+
+      <p>
+        One very important identity connects these operations. For any sets in a universal set $U$, De Morgan's laws state:
+      </p>
+
+      <div class="math-display">
+        $$(A \cup B)' = A' \cap B', \qquad (A \cap B)' = A' \cup B'$$
+      </div>
+
+      <p>
+        These identities appear constantly in probability theory, logic circuits, and database queries — so it's worth getting comfortable with them now.
+      </p>
+
+      <h2 id="cardinality">Cardinality &amp; the Inclusion–Exclusion Principle</h2>
+
+      <p>
+        The <strong>cardinality</strong> $|A|$ of a finite set is simply its number of elements. For two overlapping sets, counting the union directly would double-count the intersection. The fix is the <em>Inclusion–Exclusion Principle</em>:
+      </p>
+
+      <div class="math-display">
+        $$|A \cup B| = |A| + |B| - |A \cap B|$$
+      </div>
+
+      <p>
+        For three sets it extends to $|A \cup B \cup C| = |A|+|B|+|C|-|A \cap B|-|B \cap C|-|A \cap C|+|A \cap B \cap C|$. This formula is used constantly in combinatorics and probability.
+      </p>
+
+    </article>
+
+    <!-- BACKLINKS -->
+    <section class="backlinks-section">
+      <div class="backlinks-title">Backlinks</div>
+      <div class="backlinks-grid">
+        <a class="backlink-card" href="#">
+          <div class="backlink-card-title">Relations &amp; Functions</div>
+          <div class="backlink-card-preview">A relation from set $A$ to set $B$ is a subset of the Cartesian product $A \times B$…</div>
+        </a>
+        <a class="backlink-card" href="#">
+          <div class="backlink-card-title">Venn Diagrams</div>
+          <div class="backlink-card-preview">Venn diagrams give us a visual way to represent sets and their operations. We draw…</div>
+        </a>
+        <a class="backlink-card" href="#">
+          <div class="backlink-card-title">Probability — Sample Space</div>
+          <div class="backlink-card-preview">The sample space $S$ is the set of all possible outcomes of a random experiment…</div>
+        </a>
+        <a class="backlink-card" href="#">
+          <div class="backlink-card-title">Set-Builder Notation</div>
+          <div class="backlink-card-preview">Set-builder notation describes a set by specifying a property its members must satisfy…</div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RIGHT SIDEBAR -->
+  <aside class="sidebar-right">
+
+    <!-- Graph View -->
+    <div class="sidebar-widget">
+      <div class="sidebar-widget-title">
+        Graph View
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+      </div>
+      <div class="graph-view">
+        <svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg">
+          <!-- Edges -->
+          <line x1="110" y1="80" x2="60" y2="40" stroke="var(--graph-edge)" stroke-width="1.5"/>
+          <line x1="110" y1="80" x2="160" y2="45" stroke="var(--graph-edge)" stroke-width="1.5"/>
+          <line x1="110" y1="80" x2="55" y2="125" stroke="var(--graph-edge)" stroke-width="1.5"/>
+          <line x1="110" y1="80" x2="170" y2="120" stroke="var(--graph-edge)" stroke-width="1.5"/>
+          <line x1="110" y1="80" x2="110" y2="135" stroke="var(--graph-edge)" stroke-width="1.5"/>
+          <line x1="60" y1="40" x2="30" y2="70" stroke="var(--graph-edge)" stroke-width="1"/>
+          <line x1="160" y1="45" x2="190" y2="75" stroke="var(--graph-edge)" stroke-width="1"/>
+          <!-- Far nodes -->
+          <circle cx="30" cy="70" r="4" fill="var(--graph-edge)"/>
+          <circle cx="190" cy="75" r="4" fill="var(--graph-edge)"/>
+          <circle cx="35" cy="110" r="4" fill="var(--graph-edge)"/>
+          <!-- Main connected nodes -->
+          <circle cx="60" cy="40" r="6" fill="var(--graph-edge)"/>
+          <circle cx="160" cy="45" r="6" fill="var(--graph-edge)"/>
+          <circle cx="55" cy="125" r="6" fill="var(--graph-edge)"/>
+          <circle cx="170" cy="120" r="6" fill="var(--graph-edge)"/>
+          <circle cx="110" cy="135" r="6" fill="var(--graph-edge)"/>
+          <!-- Current node (active) -->
+          <circle cx="110" cy="80" r="9" fill="var(--graph-node)" opacity="0.2"/>
+          <circle cx="110" cy="80" r="6" fill="var(--graph-node)"/>
+          <!-- Labels -->
+          <text x="110" y="97" text-anchor="middle" font-size="7" fill="var(--text-muted)" font-family="Inter,sans-serif">Intro to Sets</text>
+          <text x="60" y="32" text-anchor="middle" font-size="6.5" fill="var(--text-muted)" font-family="Inter,sans-serif">Relations</text>
+          <text x="160" y="37" text-anchor="middle" font-size="6.5" fill="var(--text-muted)" font-family="Inter,sans-serif">Venn Diagrams</text>
+          <text x="48" y="140" text-anchor="middle" font-size="6.5" fill="var(--text-muted)" font-family="Inter,sans-serif">Probability</text>
+          <text x="175" y="133" text-anchor="middle" font-size="6.5" fill="var(--text-muted)" font-family="Inter,sans-serif">Set-Builder</text>
+          <text x="110" y="148" text-anchor="middle" font-size="6.5" fill="var(--text-muted)" font-family="Inter,sans-serif">Functions</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="sidebar-widget">
+      <div class="sidebar-widget-title">
+        Table of Contents
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <ul class="toc-list">
+        <li class="toc-item" onclick="setTocActive(this)">Introduction to Sets</li>
+        <li class="toc-item active" onclick="setTocActive(this)">Types of Sets</li>
+        <li class="toc-item toc-item-h3" onclick="setTocActive(this)">Empty Set &amp; Singleton</li>
+        <li class="toc-item" onclick="setTocActive(this)">Set Operations</li>
+        <li class="toc-item toc-item-h3" onclick="setTocActive(this)">A Worked Example</li>
+        <li class="toc-item" onclick="setTocActive(this)">Cardinality &amp; Inclusion–Exclusion</li>
+      </ul>
+    </div>
+
+    <!-- Sidebar Backlinks -->
+    <div class="sidebar-widget">
+      <div class="sidebar-widget-title">Backlinks</div>
+      <a class="sidebar-backlink" href="#">Relations &amp; Functions</a>
+      <a class="sidebar-backlink" href="#">Venn Diagrams</a>
+      <a class="sidebar-backlink" href="#">Probability — Sample Space</a>
+      <a class="sidebar-backlink" href="#">Set-Builder Notation</a>
+    </div>
+
+  </aside>
+</div>
+
+<!-- ============================================================
+     DESIGN TOKENS PANEL
+     ============================================================ -->
+<section class="tokens-panel" id="tokens-section">
+  <div class="tokens-panel-header">
+    Design Tokens
+    <span class="tokens-badge">CSS Variables</span>
+  </div>
+  <p class="tokens-subtitle">Copy these into your Quartz <code>custom.scss</code> or equivalent CSS override file.</p>
+
+  <!-- Color swatches light -->
+  <div style="margin-bottom:var(--space-6)">
+    <div class="token-group-title">Light Mode Palette</div>
+    <div class="token-swatches">
+      <div class="swatch"><div class="swatch-dot" style="background:#FAF8F5"></div><div class="swatch-label">bg-base</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#F2EDE7"></div><div class="swatch-label">bg-surface</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#FFFFFF"></div><div class="swatch-label">bg-elevated</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#2A201C"></div><div class="swatch-label">text-primary</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#6B5E57"></div><div class="swatch-label">text-secondary</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#9A8C85"></div><div class="swatch-label">text-muted</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#0C7075"></div><div class="swatch-label">accent</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#D6EFEF"></div><div class="swatch-label">accent-light</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#5BB3B7"></div><div class="swatch-label">accent-mid</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#B5600D"></div><div class="swatch-label">warning</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#FDF0E4"></div><div class="swatch-label">warning-light</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#E3D9D1"></div><div class="swatch-label">border</div></div>
+    </div>
+  </div>
+
+  <!-- Color swatches dark -->
+  <div style="margin-bottom:var(--space-8)">
+    <div class="token-group-title">Dark Mode Palette</div>
+    <div class="token-swatches">
+      <div class="swatch"><div class="swatch-dot" style="background:#1B1714;border-color:#352E28"></div><div class="swatch-label">bg-base</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#252019;border-color:#352E28"></div><div class="swatch-label">bg-surface</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#2E2820;border-color:#352E28"></div><div class="swatch-label">bg-elevated</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#EDE8E2"></div><div class="swatch-label">text-primary</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#A89E96"></div><div class="swatch-label">text-secondary</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#6E6460"></div><div class="swatch-label">text-muted</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#4BBFC4"></div><div class="swatch-label">accent</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#1A3335;border-color:#352E28"></div><div class="swatch-label">accent-light</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#E09050"></div><div class="swatch-label">warning</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#2A1E10;border-color:#352E28"></div><div class="swatch-label">warning-light</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#352E28"></div><div class="swatch-label">border</div></div>
+    </div>
+  </div>
+
+  <div class="tokens-grid">
+    <!-- CSS Variables: Colors -->
+    <div>
+      <div class="token-group-title">Colors — Light &amp; Dark</div>
+      <div class="token-block"><pre>/* Light mode (default) */
+:root {
+  --color-bg:         #FAF8F5;
+  --color-bg-surface: #F2EDE7;
+  --color-bg-elev:    #FFFFFF;
+
+  --color-text:       #2A201C;
+  --color-text-sec:   #6B5E57;
+  --color-text-muted: #9A8C85;
+  --color-link:       #0C7075;
+  --color-link-hover: #0A5D61;
+
+  --color-accent:     #0C7075;
+  --color-accent-lt:  #D6EFEF;
+  --color-accent-mid: #5BB3B7;
+
+  --color-warn:       #B5600D;
+  --color-warn-lt:    #FDF0E4;
+
+  --color-border:     #E3D9D1;
+  --color-border-str: #C9BDB5;
+
+  --color-code-bg:    #F0EBE5;
+  --color-tag-bg:     #E8F5F5;
+  --color-tag-text:   #0C7075;
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+  --color-bg:         #1B1714;
+  --color-bg-surface: #252019;
+  --color-bg-elev:    #2E2820;
+
+  --color-text:       #EDE8E2;
+  --color-text-sec:   #A89E96;
+  --color-text-muted: #6E6460;
+  --color-link:       #4BBFC4;
+  --color-link-hover: #6ECDD1;
+
+  --color-accent:     #4BBFC4;
+  --color-accent-lt:  #1A3335;
+  --color-accent-mid: #2A8F93;
+
+  --color-warn:       #E09050;
+  --color-warn-lt:    #2A1E10;
+
+  --color-border:     #352E28;
+  --color-border-str: #4A4038;
+
+  --color-code-bg:    #252019;
+  --color-tag-bg:     #1A3335;
+  --color-tag-text:   #4BBFC4;
+}</pre></div>
+    </div>
+
+    <!-- Typography -->
+    <div>
+      <div class="token-group-title">Typography</div>
+      <div class="token-block"><pre>/* Font stacks */
+--font-heading: 'DM Serif Display',
+                Georgia, serif;
+--font-body:    'Inter',
+                system-ui, sans-serif;
+--font-mono:    'JetBrains Mono',
+                'Fira Code', monospace;
+
+/* Type scale (rem) */
+--text-xs:    0.75rem;    /*  12px */
+--text-sm:    0.875rem;   /*  14px */
+--text-base:  1rem;       /*  16px */
+--text-lg:    1.125rem;   /*  18px */
+--text-xl:    1.25rem;    /*  20px */
+--text-2xl:   1.5rem;     /*  24px */
+--text-3xl:   1.875rem;   /*  30px */
+--text-4xl:   2.25rem;    /*  36px */
+
+/* Line heights */
+--lh-tight:   1.25;
+--lh-snug:    1.45;
+--lh-normal:  1.6;
+--lh-relaxed: 1.75;   /* body copy */
+--lh-loose:   1.9;
+
+/* Letter spacing */
+--ls-tight:   -0.02em;   /* display H1 */
+--ls-normal:  -0.01em;   /* H2, H3     */
+--ls-wide:    0.06em;    /* labels/caps */
+--ls-wider:   0.08em;    /* small caps  */</pre></div>
+    </div>
+
+    <!-- Spacing -->
+    <div>
+      <div class="token-group-title">Spacing Scale</div>
+      <div class="token-block"><pre>/* All in rem (base 16px) */
+--space-1:   0.25rem;   /*  4px */
+--space-2:   0.5rem;    /*  8px */
+--space-3:   0.75rem;   /* 12px */
+--space-4:   1rem;      /* 16px */
+--space-5:   1.25rem;   /* 20px */
+--space-6:   1.5rem;    /* 24px */
+--space-8:   2rem;      /* 32px */
+--space-10:  2.5rem;    /* 40px */
+--space-12:  3rem;      /* 48px */
+--space-16:  4rem;      /* 64px */
+--space-20:  5rem;      /* 80px */
+--space-24:  6rem;      /* 96px */
+
+/* Layout widths */
+--content-width:  720px;  /* reading measure */
+--sidebar-width:  260px;  /* both sidebars   */
+--nav-height:      56px;  /* sticky nav       */</pre></div>
+    </div>
+
+    <!-- Radii + Shadows -->
+    <div>
+      <div class="token-group-title">Border Radius &amp; Shadows</div>
+      <div class="token-block"><pre>/* Border radius */
+--radius-sm:    4px;
+--radius-md:    8px;
+--radius-lg:    12px;
+--radius-xl:    16px;
+--radius-full:  9999px;
+
+/* Shadows (light mode) */
+--shadow-sm:
+  0 1px 3px rgba(42,32,28,0.08);
+--shadow-md:
+  0 4px 12px rgba(42,32,28,0.10);
+--shadow-lg:
+  0 8px 24px rgba(42,32,28,0.12);
+
+/* Shadows (dark mode) */
+/* Use same vars — just darker base */
+--shadow-sm:
+  0 1px 3px rgba(0,0,0,0.25);
+--shadow-md:
+  0 4px 12px rgba(0,0,0,0.30);
+--shadow-lg:
+  0 8px 24px rgba(0,0,0,0.35);</pre></div>
+    </div>
+
+    <!-- Google Fonts import -->
+    <div>
+      <div class="token-group-title">Google Fonts Import</div>
+      <div class="token-block"><pre>/* Paste in &lt;head&gt; of your
+   Quartz layout or base.html */
+
+&lt;link rel="preconnect"
+  href="https://fonts.googleapis.com"&gt;
+&lt;link href="https://fonts.googleapis.com/
+  css2?family=DM+Serif+Display:ital@0;1
+  &amp;family=Inter:wght@400;500;600
+  &amp;family=JetBrains+Mono:wght@400;500
+  &amp;display=swap"
+  rel="stylesheet"&gt;
+
+/* Then in custom.scss: */
+$font-text: 'Inter', system-ui, sans-serif;
+$font-header: 'DM Serif Display', serif;
+$font-code: 'JetBrains Mono', monospace;</pre></div>
+    </div>
+
+    <!-- Quartz-specific overrides -->
+    <div>
+      <div class="token-group-title">Quartz SCSS Overrides Sketch</div>
+      <div class="token-block"><pre>/* custom.scss */
+$light-mode: (
+  light: #FAF8F5,
+  lightgray: #E3D9D1,
+  gray: #9A8C85,
+  darkgray: #6B5E57,
+  dark: #2A201C,
+  secondary: #0C7075,
+  tertiary: #5BB3B7,
+  highlight: rgba(12,112,117,0.08),
+);
+
+$dark-mode: (
+  light: #252019,
+  lightgray: #352E28,
+  gray: #6E6460,
+  darkgray: #A89E96,
+  dark: #EDE8E2,
+  secondary: #4BBFC4,
+  tertiary: #2A8F93,
+  highlight: rgba(75,191,196,0.08),
+);
+
+/* Callout colours */
+--callout-tip:     #0C7075;
+--callout-warning: #B5600D;
+--callout-info:    #5BB3B7;</pre></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     TWEAKS PANEL
+     ============================================================ -->
+<div class="tweaks-panel" id="tweaksPanel">
+  <div class="tweaks-title">Tweaks</div>
+
+  <div class="tweak-row">
+    <span class="tweak-label">Dark mode</span>
+    <button class="tweak-toggle" id="darkToggle" onclick="toggleDark()"></button>
+  </div>
+
+  <div class="tweak-row">
+    <span class="tweak-label">Body font size</span>
+    <select class="tweak-select" onchange="setFontSize(this.value)">
+      <option value="15px">Small (15)</option>
+      <option value="16px" selected>Default (16)</option>
+      <option value="17px">Large (17)</option>
+      <option value="18px">XL (18)</option>
+    </select>
+  </div>
+
+  <div class="tweak-row">
+    <span class="tweak-label">Accent hue</span>
+    <select class="tweak-select" onchange="setAccent(this.value)">
+      <option value="teal" selected>Teal</option>
+      <option value="indigo">Indigo</option>
+      <option value="rose">Rose</option>
+      <option value="emerald">Emerald</option>
+    </select>
+  </div>
+
+  <div class="tweak-row">
+    <span class="tweak-label">Tokens panel</span>
+    <button class="tweak-toggle on" id="tokensToggle" onclick="toggleTokens()"></button>
+  </div>
+</div>
+
+<script>
+// ---- Dark mode ----
+let isDark = false;
+function toggleDark() {
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  const t = document.getElementById('darkToggle');
+  if (t) t.classList.toggle('on', isDark);
+  // update icon
+  const icon = document.getElementById('darkIcon');
+  if (icon) icon.innerHTML = isDark
+    ? '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>'
+    : '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  window.parent.postMessage({type:'__edit_mode_set_keys', edits:{darkMode: isDark}}, '*');
+}
+
+// ---- Folder toggle ----
+function toggleFolder(el) {
+  const chevron = el.querySelector('.tree-chevron');
+  const folderId = el.parentElement.querySelector('ul');
+  if (!folderId) return;
+  const isOpen = chevron.classList.contains('open');
+  chevron.classList.toggle('open', !isOpen);
+  folderId.style.display = isOpen ? 'none' : '';
+}
+
+// ---- TOC active ----
+function setTocActive(el) {
+  document.querySelectorAll('.toc-item').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ---- Font size ----
+function setFontSize(size) {
+  document.documentElement.style.fontSize = size;
+}
+
+// ---- Accent hue ----
+const accents = {
+  teal:    { light: '#0C7075', lt: '#D6EFEF', mid: '#5BB3B7', dark: '#4BBFC4', dlt: '#1A3335' },
+  indigo:  { light: '#4338CA', lt: '#E0E7FF', mid: '#818CF8', dark: '#818CF8', dlt: '#1E1B4B' },
+  rose:    { light: '#BE185D', lt: '#FCE7F3', mid: '#F472B6', dark: '#F472B6', dlt: '#4C0519' },
+  emerald: { light: '#047857', lt: '#D1FAE5', mid: '#34D399', dark: '#34D399', dlt: '#022C22' },
+};
+function setAccent(hue) {
+  const a = accents[hue];
+  const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.documentElement.style.setProperty('--accent', dark ? a.dark : a.light);
+  document.documentElement.style.setProperty('--accent-light', dark ? a.dlt : a.lt);
+  document.documentElement.style.setProperty('--accent-mid', a.mid);
+  document.documentElement.style.setProperty('--text-link', dark ? a.dark : a.light);
+  document.documentElement.style.setProperty('--tag-bg', dark ? a.dlt : a.lt);
+  document.documentElement.style.setProperty('--tag-text', dark ? a.dark : a.light);
+}
+
+// ---- Tokens toggle ----
+let tokensVisible = true;
+function toggleTokens() {
+  tokensVisible = !tokensVisible;
+  document.getElementById('tokens-section').style.display = tokensVisible ? '' : 'none';
+  document.getElementById('tokensToggle').classList.toggle('on', tokensVisible);
+}
+
+// ---- Tweaks panel wiring ----
+window.addEventListener('message', (e) => {
+  if (e.data?.type === '__activate_edit_mode') {
+    document.getElementById('tweaksPanel').classList.add('visible');
+  }
+  if (e.data?.type === '__deactivate_edit_mode') {
+    document.getElementById('tweaksPanel').classList.remove('visible');
+  }
+});
+window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+// Persist dark mode in localStorage
+const saved = localStorage.getItem('math101-dark');
+if (saved === 'true') toggleDark();
+
+document.getElementById('darkToggleBtn').addEventListener('click', () => {
+  localStorage.setItem('math101-dark', isDark);
+});
+</script>
+</body>
+</html>

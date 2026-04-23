@@ -1,0 +1,262 @@
+/* ============================================================
+   MATH101 — Design Tokens
+   Generated: April 22, 2026
+   Usage: Paste into your Quartz custom.scss, or @import this
+   file. All values are CSS custom properties; override any
+   variable after this block to customise a single token.
+   ============================================================ */
+
+
+/* ────────────────────────────────────────────
+   LIGHT MODE  (default)
+   ──────────────────────────────────────────── */
+:root {
+
+  /* —— Background layers ——
+     Use bg-base for the page canvas, bg-surface for
+     sidebar / panel fills, bg-elevated for cards and modals. */
+  --m-bg-base:          #FAF8F5;   /* warm parchment off-white */
+  --m-bg-surface:       #F2EDE7;   /* slightly deeper warm tone */
+  --m-bg-elevated:      #FFFFFF;   /* cards, nav, modals       */
+
+  /* —— Text ——                                                */
+  --m-text-primary:     #2A201C;   /* body copy, headings      */
+  --m-text-secondary:   #6B5E57;   /* captions, metadata       */
+  --m-text-muted:       #9A8C85;   /* placeholders, labels     */
+  --m-text-link:        #0C7075;   /* inline links             */
+  --m-text-link-hover:  #0A5D61;   /* link hover               */
+
+  /* —— Accent — Teal ——                                       */
+  --m-accent:           #0C7075;   /* primary interactive teal */
+  --m-accent-light:     #D6EFEF;   /* tint bg (tags, callouts) */
+  --m-accent-mid:       #5BB3B7;   /* lighter teal (graph edges, badges) */
+
+  /* —— Warning — Amber ——                                     */
+  --m-warning:          #B5600D;   /* warning callout text/icon */
+  --m-warning-light:    #FDF0E4;   /* warning callout bg        */
+
+  /* —— Borders ——                                             */
+  --m-border:           #E3D9D1;   /* default dividers, card outlines */
+  --m-border-strong:    #C9BDB5;   /* stronger separators             */
+
+  /* —— Code ——                                                */
+  --m-code-bg:          #F0EBE5;   /* inline code background   */
+  --m-code-text:        #2A201C;   /* inline code text         */
+
+  /* —— Tags / Pills ——                                        */
+  --m-tag-bg:           #E8F5F5;   /* tag chip background      */
+  --m-tag-text:         #0C7075;   /* tag chip text            */
+
+  /* —— Sidebar ——                                             */
+  --m-sidebar-bg:       #FAF8F5;   /* explorer / TOC panel bg  */
+  --m-sidebar-active:   #E8F5F5;   /* active tree item bg      */
+
+  /* —— Navigation bar ——                                      */
+  --m-nav-bg:           #FAF8F5;   /* sticky nav background    */
+  --m-nav-border:       #E3D9D1;   /* nav bottom border        */
+
+  /* —— Graph view ——                                          */
+  --m-graph-bg:         #F2EDE7;
+  --m-graph-node:       #0C7075;
+  --m-graph-node-active:#0A5D61;
+  --m-graph-edge:       #C9BDB5;
+
+  /* —— Shadows ——                                             */
+  --m-shadow-sm:  0 1px 3px rgba(42, 32, 28, 0.08);
+  --m-shadow-md:  0 4px 14px rgba(42, 32, 28, 0.10);
+  --m-shadow-lg:  0 8px 28px rgba(42, 32, 28, 0.12);
+
+  /* —— Transitions ——                                         */
+  --m-transition: 180ms ease;
+
+  /* ──────────────────────────────────────────
+     TYPOGRAPHY
+     ────────────────────────────────────────── */
+
+  /* Font stacks */
+  --m-font-heading: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+  --m-font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --m-font-mono:    'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  /* Type scale — rem (base 16 px) */
+  --m-text-xs:    0.75rem;    /*  12 px — labels, captions     */
+  --m-text-sm:    0.875rem;   /*  14 px — secondary text, meta */
+  --m-text-base:  1rem;       /*  16 px — body copy            */
+  --m-text-lg:    1.125rem;   /*  18 px — lead paragraph       */
+  --m-text-xl:    1.25rem;    /*  20 px — site title, nav      */
+  --m-text-2xl:   1.5rem;     /*  24 px — H2                   */
+  --m-text-3xl:   1.875rem;   /*  30 px — section title        */
+  --m-text-4xl:   2.25rem;    /*  36 px — H1 (desktop)         */
+  --m-text-5xl:   3rem;       /*  48 px — hero display         */
+
+  /* Line heights */
+  --m-lh-tight:    1.25;   /* headings                 */
+  --m-lh-snug:     1.45;   /* H2 / H3                  */
+  --m-lh-normal:   1.6;    /* UI labels                */
+  --m-lh-relaxed:  1.75;   /* body prose               */
+  --m-lh-loose:    1.9;    /* callout / aside body     */
+
+  /* Letter spacing */
+  --m-ls-tight:   -0.025em;  /* hero H1                  */
+  --m-ls-display: -0.02em;   /* H1                       */
+  --m-ls-heading: -0.015em;  /* H2                       */
+  --m-ls-normal:  -0.01em;   /* H3, nav brand            */
+  --m-ls-caps:     0.06em;   /* uppercase labels         */
+  --m-ls-wider:    0.08em;   /* small-caps section heads */
+
+  /* Font weights */
+  --m-fw-regular:  400;
+  --m-fw-medium:   500;
+  --m-fw-semibold: 600;
+
+  /* ──────────────────────────────────────────
+     SPACING SCALE  (all in rem, base 16 px)
+     ────────────────────────────────────────── */
+  --m-space-px:   1px;
+  --m-space-0-5:  0.125rem;   /*  2 px */
+  --m-space-1:    0.25rem;    /*  4 px */
+  --m-space-1-5:  0.375rem;   /*  6 px */
+  --m-space-2:    0.5rem;     /*  8 px */
+  --m-space-2-5:  0.625rem;   /* 10 px */
+  --m-space-3:    0.75rem;    /* 12 px */
+  --m-space-3-5:  0.875rem;   /* 14 px */
+  --m-space-4:    1rem;       /* 16 px */
+  --m-space-5:    1.25rem;    /* 20 px */
+  --m-space-6:    1.5rem;     /* 24 px */
+  --m-space-7:    1.75rem;    /* 28 px */
+  --m-space-8:    2rem;       /* 32 px */
+  --m-space-9:    2.25rem;    /* 36 px */
+  --m-space-10:   2.5rem;     /* 40 px */
+  --m-space-12:   3rem;       /* 48 px */
+  --m-space-14:   3.5rem;     /* 56 px */
+  --m-space-16:   4rem;       /* 64 px */
+  --m-space-20:   5rem;       /* 80 px */
+  --m-space-24:   6rem;       /* 96 px */
+
+  /* Layout breakpoints (as reference values — use in media queries) */
+  --m-content-width:  720px;   /* reading measure, center column */
+  --m-sidebar-width:  260px;   /* left + right sidebar width     */
+  --m-nav-height:      56px;   /* sticky nav height              */
+  --m-max-layout:    1400px;   /* outer grid max-width           */
+
+  /* ──────────────────────────────────────────
+     BORDER RADIUS SCALE
+     ────────────────────────────────────────── */
+  --m-radius-none:  0px;
+  --m-radius-sm:    4px;    /* inline code, small chips   */
+  --m-radius-md:    8px;    /* cards, inputs, buttons     */
+  --m-radius-lg:    12px;   /* callouts, panels, modals   */
+  --m-radius-xl:    16px;   /* large cards, drawers       */
+  --m-radius-2xl:   24px;   /* bottom sheets              */
+  --m-radius-full:  9999px; /* pills, tags, toggles       */
+}
+
+
+/* ────────────────────────────────────────────
+   DARK MODE
+   Applied via: <html data-theme="dark">
+   In Quartz this maps to: savedTheme === "dark"
+   ──────────────────────────────────────────── */
+[data-theme="dark"] {
+
+  /* —— Background layers —— */
+  --m-bg-base:          #1B1714;
+  --m-bg-surface:       #252019;
+  --m-bg-elevated:      #2E2820;
+
+  /* —— Text —— */
+  --m-text-primary:     #EDE8E2;
+  --m-text-secondary:   #A89E96;
+  --m-text-muted:       #6E6460;
+  --m-text-link:        #4BBFC4;
+  --m-text-link-hover:  #6ECDD1;
+
+  /* —— Accent —— */
+  --m-accent:           #4BBFC4;
+  --m-accent-light:     #1A3335;
+  --m-accent-mid:       #2A8F93;
+
+  /* —— Warning —— */
+  --m-warning:          #E09050;
+  --m-warning-light:    #2A1E10;
+
+  /* —— Borders —— */
+  --m-border:           #352E28;
+  --m-border-strong:    #4A4038;
+
+  /* —— Code —— */
+  --m-code-bg:          #252019;
+  --m-code-text:        #EDE8E2;
+
+  /* —— Tags —— */
+  --m-tag-bg:           #1A3335;
+  --m-tag-text:         #4BBFC4;
+
+  /* —— Sidebar —— */
+  --m-sidebar-bg:       #1B1714;
+  --m-sidebar-active:   #1A3335;
+
+  /* —— Nav —— */
+  --m-nav-bg:           #1B1714;
+  --m-nav-border:       #352E28;
+
+  /* —— Graph —— */
+  --m-graph-bg:         #252019;
+  --m-graph-node:       #4BBFC4;
+  --m-graph-node-active:#6ECDD1;
+  --m-graph-edge:       #4A4038;
+
+  /* —— Shadows —— */
+  --m-shadow-sm:  0 1px 3px rgba(0, 0, 0, 0.30);
+  --m-shadow-md:  0 4px 14px rgba(0, 0, 0, 0.35);
+  --m-shadow-lg:  0 8px 28px rgba(0, 0, 0, 0.40);
+
+  /* Typography, spacing and radius are theme-invariant — no overrides needed */
+}
+
+
+/* ────────────────────────────────────────────
+   QUARTZ SCSS VARIABLE MAP
+   Copy this block as a comment in custom.scss
+   and replace $variables as shown below.
+   ──────────────────────────────────────────── */
+/*
+  // In quartz/styles/custom.scss:
+
+  // ── Fonts ─────────────────────────────────
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  $font-text:   var(--m-font-body);
+  $font-header: var(--m-font-heading);
+  $font-code:   var(--m-font-mono);
+
+  // ── Light palette (Quartz internal vars) ──
+  $light: (
+    light:      #FAF8F5,   // bg-base
+    lightgray:  #E3D9D1,   // border
+    gray:       #9A8C85,   // text-muted
+    darkgray:   #6B5E57,   // text-secondary
+    dark:       #2A201C,   // text-primary
+    secondary:  #0C7075,   // accent
+    tertiary:   #5BB3B7,   // accent-mid
+    highlight:  rgba(12, 112, 117, 0.10),  // selection / highlight
+  );
+
+  // ── Dark palette (Quartz internal vars) ───
+  $dark: (
+    light:      #252019,   // bg-surface
+    lightgray:  #352E28,   // border
+    gray:       #6E6460,   // text-muted
+    darkgray:   #A89E96,   // text-secondary
+    dark:       #EDE8E2,   // text-primary
+    secondary:  #4BBFC4,   // accent
+    tertiary:   #2A8F93,   // accent-mid
+    highlight:  rgba(75, 191, 196, 0.12),
+  );
+
+  // ── Callout accent colours ─────────────────
+  // tip     → --m-accent       (#0C7075 / #4BBFC4)
+  // warning → --m-warning      (#B5600D / #E09050)
+  // info    → --m-accent-mid   (#5BB3B7 / #2A8F93)
+  // note    → --m-text-secondary
+*/

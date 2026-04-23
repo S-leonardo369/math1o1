@@ -1,0 +1,365 @@
+@use "./base.scss";
+
+// ============================================================
+// Math101 — Quartz custom theme overrides
+// Design tokens: warm teal palette, DM Serif Display headings,
+// Inter body, generous line-height, friendly callouts.
+// ============================================================
+
+// ============================================================
+// BASE TYPOGRAPHY
+// ============================================================
+
+body {
+  line-height: 1.8;
+  letter-spacing: -0.01em;
+}
+
+// Headings — DM Serif Display (loaded via fontOrigin in quartz.config.ts)
+h1, h2, h3, h4, h5, h6,
+.page-title,
+.article-title {
+  font-family: var(--headerFont);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+h1, .article-title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--lightgray);
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+p, li {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--dark);
+}
+
+a {
+  color: var(--secondary);
+  text-underline-offset: 3px;
+  transition: color 180ms ease;
+
+  &:hover {
+    color: var(--tertiary);
+  }
+}
+
+// Inline code
+code {
+  background: color-mix(in srgb, var(--secondary) 8%, var(--light));
+  border: 1px solid var(--lightgray);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.875em;
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+
+.nav-bar {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.page-title a {
+  font-family: var(--headerFont);
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+  color: var(--dark);
+
+  &:hover {
+    color: var(--secondary);
+    text-decoration: none;
+  }
+}
+
+// ============================================================
+// SIDEBAR — Explorer & TOC
+// ============================================================
+
+.explorer-content .active > a {
+  color: var(--secondary);
+  font-weight: 600;
+  background: color-mix(in srgb, var(--secondary) 10%, transparent);
+  border-radius: 4px;
+  padding-left: 0.5rem;
+}
+
+.toc li.active > a {
+  color: var(--secondary);
+  font-weight: 600;
+  border-left: 2px solid var(--secondary);
+  padding-left: 0.5rem;
+}
+
+// ============================================================
+// TAGS / PILLS
+// ============================================================
+
+.tag-link,
+a[href^="/tags/"] {
+  background: color-mix(in srgb, var(--secondary) 12%, transparent);
+  color: var(--secondary);
+  border-radius: 9999px;
+  padding: 2px 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+  transition: background 180ms, border-color 180ms;
+  text-decoration: none;
+
+  &:hover {
+    background: color-mix(in srgb, var(--secondary) 20%, transparent);
+    border-color: var(--secondary);
+    text-decoration: none;
+  }
+}
+
+// ============================================================
+// CALLOUTS — friendly Obsidian-style
+// ============================================================
+
+.callout {
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  overflow: hidden;
+  border: 1px solid transparent;
+
+  &[data-callout="tip"],
+  &[data-callout="hint"] {
+    background: color-mix(in srgb, var(--secondary) 10%, var(--light));
+    border-color: color-mix(in srgb, var(--secondary) 30%, transparent);
+
+    .callout-title {
+      color: var(--secondary);
+    }
+  }
+
+  &[data-callout="warning"],
+  &[data-callout="caution"],
+  &[data-callout="attention"] {
+    background: #FDF0E4;
+    border-color: rgba(181, 96, 13, 0.30);
+
+    .callout-title {
+      color: #B5600D;
+    }
+  }
+
+  &[data-callout="note"],
+  &[data-callout="info"] {
+    background: color-mix(in srgb, var(--tertiary) 12%, var(--light));
+    border-color: color-mix(in srgb, var(--tertiary) 30%, transparent);
+
+    .callout-title {
+      color: var(--tertiary);
+    }
+  }
+
+  &[data-callout="example"] {
+    background: color-mix(in srgb, var(--dark) 5%, var(--light));
+    border-color: var(--lightgray);
+
+    .callout-title {
+      color: var(--darkgray);
+    }
+  }
+
+  &[data-callout="important"],
+  &[data-callout="success"],
+  &[data-callout="done"],
+  &[data-callout="check"] {
+    background: color-mix(in srgb, var(--secondary) 10%, var(--light));
+    border-color: color-mix(in srgb, var(--secondary) 30%, transparent);
+
+    .callout-title {
+      color: var(--secondary);
+    }
+  }
+}
+
+.callout-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.75rem 1rem 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.callout-content {
+  padding: 0 1rem 1rem;
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: var(--darkgray);
+}
+
+// Dark mode callout overrides
+[saved-theme="dark"] {
+  .callout[data-callout="warning"],
+  .callout[data-callout="caution"] {
+    background: #2A1E10;
+    border-color: rgba(224, 144, 80, 0.30);
+
+    .callout-title {
+      color: #E09050;
+    }
+  }
+}
+
+// ============================================================
+// LATEX / KATEX
+// ============================================================
+
+// Inline math — prevent descenders from clipping
+.katex {
+  line-height: 1.6;
+  font-size: 1.05em;
+}
+
+// Display math — breathing room + surface background
+.katex-display {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  padding: 1.25rem 1.5rem;
+  background: color-mix(in srgb, var(--secondary) 5%, var(--light));
+  border-radius: 8px;
+  border: 1px solid var(--lightgray);
+  text-align: center;
+
+  > .katex {
+    font-size: 1.1em;
+  }
+}
+
+// Dark mode — KaTeX must inherit color (doesn't by default)
+[saved-theme="dark"] {
+  .katex,
+  .katex * {
+    color: inherit !important;
+    border-color: var(--lightgray) !important;
+  }
+
+  .katex-display {
+    background: var(--light);
+    border-color: var(--lightgray);
+  }
+}
+
+// ============================================================
+// BACKLINKS SECTION
+// ============================================================
+
+#backlinks-container {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--lightgray);
+}
+
+// ============================================================
+// GRAPH VIEW
+// ============================================================
+
+#graph-container {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--lightgray);
+}
+
+// ============================================================
+// WHATSAPP SHARE BUTTON
+// (injected by WhatsAppShare component in quartz/components/)
+// ============================================================
+
+.whatsapp-share {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #25D366;
+  color: #fff !important;
+  border-radius: 9999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none !important;
+  transition: background 180ms, transform 180ms;
+  margin-bottom: 1.5rem;
+
+  svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    background: #1ebe59;
+    transform: translateY(-1px);
+    text-decoration: none !important;
+  }
+}
+
+// ============================================================
+// DISCLAIMER FOOTER NOTE
+// (injected by Disclaimer component in quartz/components/)
+// ============================================================
+
+.post-disclaimer {
+  margin-top: 2.5rem;
+  padding: 0.875rem 1.125rem;
+  background: color-mix(in srgb, var(--secondary) 7%, var(--light));
+  border-left: 3px solid var(--secondary);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.8125rem;
+  color: var(--darkgray);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+// ============================================================
+// RESPONSIVE TWEAKS
+// ============================================================
+
+@media (max-width: 860px) {
+  h1, .article-title {
+    font-size: 1.875rem;
+  }
+
+  h2 {
+    font-size: 1.375rem;
+  }
+
+  .katex-display {
+    padding: 1rem;
+    font-size: 0.95em;
+  }
+}
+
+// ============================================================
+// SCROLLBAR
+// ============================================================
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--lightgray);
+  border-radius: 3px;
+}
