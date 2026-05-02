@@ -1,11 +1,11 @@
 
 ---
-title: why, Sets??
-description: understanding the basic concept of sets
-tags: 
+title: "Why Sets?"
+description: "Understanding the basic concept of sets."
+tags:
   - sets
-
-draft: true
+  - basics
+draft: false
 ---
 
 ## So... What are sets?!!

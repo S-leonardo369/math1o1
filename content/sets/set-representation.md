@@ -1,9 +1,11 @@
 
 ---
-title: Can you **REPRESENT** sets in other ways too???
-description: "Learn the two ways to write a set: roster form and set-builder form."tags:
+title: "Can You Represent Sets in Other Ways Too?"
+description: "Learn the two ways to write a set: roster form and set-builder form."
+tags:
   - sets
-draft: true
+  - basics
+draft: false
 ---
 
 > [!Reminder]
