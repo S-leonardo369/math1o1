@@ -11,7 +11,7 @@ If you've ever stared at a maths problem and felt like the textbook was written 
 
 Pick a chapter to dive in. I'm adding new posts every week.
 
-- [[sets/what-are-sets|Sets & Logic]] — the building blocks of all mathematics
+- [[sets/|Sets & Logic]] — the building blocks of all mathematics
 - [[relations-functions/|Relations & Functions]] — mappings, domain, range
 - [[trigonometry/|Trigonometry]] — angles, ratios, and the unit circle
 - [[complex-numbers/|Complex Numbers]] — when real numbers aren't enough
