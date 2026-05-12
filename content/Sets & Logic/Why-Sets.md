@@ -1,11 +1,11 @@
 
 ---
-title: "Why Sets?"
-description: "Understanding the basic concept of sets."
-tags:
+title: why, Sets??
+description: understanding the basic concept of sets
+tags: 
   - sets
-  - basics
-draft: false
+
+draft: true
 ---
 
 ## So... What are sets?!!
@@ -46,6 +46,8 @@ and are used in other concepts such as **functions**, **geometry**, and  **proba
 ## Next up
 
 [[set-representation]]
+[[subset-power-Universal-set]]
+
 
 ---
 

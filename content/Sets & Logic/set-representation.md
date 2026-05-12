@@ -1,11 +1,11 @@
 
 ---
-title: "Can You Represent Sets in Other Ways Too?"
-description: "Learn the two ways to write a set: roster form and set-builder form."
+title: Can you REPRESENT sets in other ways too???
+description: learn two types of representation of set. `Roster form` and `Set-Builder form`
 tags:
   - sets
   - basics
-draft: false
+draft: true
 ---
 
 > [!Reminder]
@@ -29,6 +29,24 @@ example of class attendance call:
 example of mathematical set with integers:
 
 > $$X = \{-3,-2,-1, 0, 1,2,3\}$$
+
+---
+
+belongs to is one of the most used and important symbols in sets. 
+
+>[!Important]
+> to represent `belongs to` we use the symbol $\in$  and to represent `not belongs to` we use $\notin$
+
+
+we use it say that an element is in a particular set. taking from our previous example of set of vowels. we can say 
+
+>$$a \in V$$
+>this means that letter `a` belongs and is in set `V` / vowels. 
+>$$ m \notin V$$
+>this means that letter `m` does not belong to and is not in set `V` / vowels.
+
+---
+
 - ### Set-Builder form
 the builder form is like mentioning a short description and properties of the set in one line while being very precise. In this all the elements in that set have common property, which is not possessed by any element outside the set. 
 
@@ -38,15 +56,19 @@ for example, let say set of vowels. now first, vowels are a, e, i, o, u. now no 
 
 to represent this in builder form since the example above as you noticed is `roster form`. 
 
+$$V = \{x \mid x \text{ is vowel in english language}\}$$
+
+to represent the same thing but now using the required math symbols
 
 $$V = \{x \mid x \text{ is vowel in english language}\}$$
+
 note that both are basically the same set `V` but their representation is totally different. you might ask why we should even you `set-builder form` since in the example i gave you this is bigger and more complex and confusing, this is so... in few cases where you can represent and write all the element of the set in the set, but in case of natural number `N` or real number `R` we cannot represent em all.
 
 >[!Note]
 >I will give you python code which you will copy and paste it in [Python Tutor code visualizer: Visualize code in Python, JavaScript, C, C++, and Java](https://pythontutor.com/visualize.html#mode=edit)
 >this website will allow you to visualize how the sets might work and get deeper understanding of sets and conditioning.
  
-```Python
+```
 sets = []
 for number in range(101):
     sets.append(number)
@@ -57,11 +79,12 @@ print(sets)
 >[!Note]
 > `[]` is actually lists in python but since the real sets in python cannot be change we used list but it is doing the same thing.
 
-```Python
+```
 sets = [number for number in range(101)]
 ```
 
 This is how it will look in python `comprehension` / `set-builder`.
+
 ## Try it yourself
 
 **Problem 1:**  Write the solution set of the equation  $x^2 + x - 2 = 0$ in roster form.
@@ -72,7 +95,8 @@ _i want you to see that sets are not isolated and connected to every math concep
 > therefore the solution set will be `{1, -2}`
 ## Related posts
 
-[[other-post-slug]]
+[[subset-power-Universal-set]]
+[[Why-Sets]]
 
 ---
 
