@@ -5,7 +5,7 @@ description: part of, broken down and everything set is all you need to remember
 tags:
   - sets
   - types of set
-draft: true
+draft: false
 ---
 ### Empty set
 empty set is the most intuitive and unintuitive thing in sets. We all know that their must be a set which is empty. the empty set contains nothing but has one property, it belongs to every set in mathematics.

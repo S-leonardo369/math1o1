@@ -5,7 +5,7 @@ description: understanding the basic concept of sets
 tags: 
   - sets
 
-draft: true
+draft: false
 ---
 
 ## So... What are sets?!!

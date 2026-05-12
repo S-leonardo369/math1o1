@@ -5,7 +5,7 @@ description: learn two types of representation of set. `Roster form` and `Set-Bu
 tags:
   - sets
   - basics
-draft: true
+draft: false
 ---
 
 > [!Reminder]
