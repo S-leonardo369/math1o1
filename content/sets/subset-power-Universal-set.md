@@ -11,9 +11,9 @@ draft: false
 empty set is the most intuitive and unintuitive thing in sets. We all know that their must be a set which is empty. the empty set contains nothing but has one property, it belongs to every set in mathematics.
 
 > [!note]
-$\varnothing$ or $\Phi$ represents the empty set.
-$\varnothing$ or $\{\} \in \text{any set in mathematics}$
-_more explain in_ Power set 
+> $\varnothing$ or $\Phi$ represents the empty set.
+> $\varnothing$ or $\{\} \in \text{any set in mathematics}$
+> _more explain in_ Power set 
 
 ### Equality and Equal sets
 
@@ -34,10 +34,11 @@ subset are sets that are `part of` or `belong to` another set. if every element 
 >then we can say that `A` $\subset$ `B`
 >here A is proper subset of B since A $\neq$ B.
 
-empty sets are subsets of every set set since empty set has no element that can violate this condition. thus $$\varnothing \subset \text{every set in mathematic}$$
+empty sets are subsets of every set set since empty set has no element that can violate this condition. thus 
+$$\varnothing \subset \text{every set in mathematic}$$
 #### Proper and equal subset/improper ;)
 let expand on the term proper subset. when a set is just a subset/ a part of set only and not the set itself then, it is a proper subset. in the bookish language we might say: `A is subset of B, but A is not equal to B.`
-$$A \subset B$$$$A \neq B$$
+$$A \subset B$$ $$A \neq B$$
 on the other hand equal subset or improper subset means that, not only A is subset of B, but it is B, if you think about it... so the definition will be: `A is subset of B, and A is equal to B.`
 $$A \subset B$$
 $$A = B$$
@@ -101,7 +102,7 @@ In general, if A is a set with n(A) = m, then it can be shown that $\text{n[P(A)
 
 Try it yourself — type any set and hit Compute (or press Enter):
 
-<iframe src="/power-set.html"
+<iframe src="quartz/static/power-set.html"
   width="100%"
   height="520"
   frameborder="0"
