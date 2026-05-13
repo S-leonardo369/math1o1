@@ -102,7 +102,7 @@ In general, if A is a set with n(A) = m, then it can be shown that $\text{n[P(A)
 
 Try it yourself — type any set and hit Compute (or press Enter):
 
-<iframe src="quartz/static/power-set.html"
+<iframe src="/static/power-set.html"
   width="100%"
   height="520"
   frameborder="0"
