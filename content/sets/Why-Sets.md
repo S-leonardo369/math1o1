@@ -47,6 +47,7 @@ and are used in other concepts such as **functions**, **geometry**, and  **proba
 
 [[set-representation]]
 [[subset-power-Universal-set]]
+[[Venn Diagram]]
 
 
 ---
