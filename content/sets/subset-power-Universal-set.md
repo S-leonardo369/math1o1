@@ -127,7 +127,7 @@ also note that universal set depends on context, for example if we talk about na
 
 [[Why-Sets]]
 [[set-representation]]
-[[Venn Diagram]]
+[[Venn-Diagram]]
 
 ---
 

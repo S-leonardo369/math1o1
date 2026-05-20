@@ -97,7 +97,7 @@ _i want you to see that sets are not isolated and connected to every math concep
 
 [[subset-power-Universal-set]]
 [[Why-Sets]]
-[[Venn Diagram]]
+[[Venn-Diagram]]
 
 ---
 

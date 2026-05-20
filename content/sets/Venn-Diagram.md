@@ -1,6 +1,6 @@
 
 ---
-title: Venn Diagram and operations on sets
+title: Venn Diagram.
 description: learning about Venn diagram.
 tags:
   - sets
