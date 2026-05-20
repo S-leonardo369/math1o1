@@ -5,7 +5,7 @@ description: learning about Venn diagram.
 tags:
   - sets
   - venn diagram
-draft: true
+draft: false
 ---
 
 ## Venns Diagram
