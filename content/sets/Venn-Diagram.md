@@ -1,53 +1,58 @@
 
 ---
-title: Venn Diagram.
-description: learning about Venn diagram.
+title: "Venn Diagram"
+description: "Learning about Venn diagrams and how they represent sets visually."
 tags:
   - sets
-  - venn diagram
+  - venn-diagram
 draft: false
 ---
 
-## Venns Diagram
+## Venn Diagram
 
-![Venn diagram showing disjoint sets A and B](images/venndiagram1.png)
+![Venn diagram showing disjoint sets A and B](sets/images/venndiagram1.png)
 
-"`Venns diagram are visual tools to illustrate sets, relation between the sets and operations performed on them.`"
+> [!note]
+> Venn diagrams are visual tools to illustrate sets, relations between sets, and operations performed on them.
 
- Venn diagram, introduced by John Venn (1834-1883), uses circles (overlapping, intersecting and non-intersecting), to denote the relationship between sets, and all of this is contained in rectangle to denote [Universal set](subset-power-Universal-set##Universal set).
+Venn diagram, introduced by John Venn (1834-1883), uses circles (overlapping, intersecting and non-intersecting) to denote the relationship between sets. All of this is contained in a rectangle to denote the [[subset-power-Universal-set#Universal set|Universal set]].
 
-### Terms Related to Venn diagram
+## Terms Related to Venn Diagrams
 
-The concept of the Venn diagram is very useful for solving a variety of problems in Mathematics and other areas. To understand more about it, let's learn some important terms related to it.
+The concept of the Venn diagram is very useful for solving a variety of problems in Mathematics and other areas. Let's learn some important terms related to it.
 
-#### Sets
+### Sets
 
-`A set is collection of well defined mathematical objects.`
+`A set is a collection of well defined mathematical objects.`
+
 $$A = \{1,2,3,4,5,6,7\}$$
-![Sets](images/set.png)
 
-sets and set in general would be shown with the elements inside them or their variable names.
-#### Universal set
+![Sets](sets/images/set.png)
 
-`Universal Set is a large set that contains all the sets that we are considering in a particular situation.`
+Sets are shown with their elements inside curly braces, or just their variable name inside the circle.
 
-![Universal set](images/universalset.png)
+### Universal Set
 
-#### Subset
+`The Universal Set is a large set that contains all the sets we are considering in a particular situation.`
 
-`Subset is actually a set of values that is contained inside another set.`
+![Universal set](sets/images/universalset.png)
 
-![Subset](images/subset.png)
+### Subset
 
-#### Complement of a Set
+`A subset is a set whose elements are all contained inside another set.`
 
-`Complementing a set means finding the value of the data present in the Universal set other than the data of the set.`
+![Subset](sets/images/subset.png)
 
-![complement of a set](images/complement.png)
+### Complement of a Set
 
-$A^c$ represents complement of A.
+`The complement of a set means all the elements in the Universal set that are NOT in the set.`
 
-$$n(A^c) = U - n(A)$$
+![complement of a set](sets/images/complement.png)
+
+$A^c$ represents the complement of A.
+
+$$n(A^c) = n(U) - n(A)$$
+
 ## Related posts
 
 [[Why-Sets]]
