@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;font-size:15px;padding:1.25rem;background:transparent;color:#2A201C}
+@media(prefers-color-scheme:dark){body{color:#EDE8E2}input{background:#252019;color:#EDE8E2;border-color:#352E28}.stat{background:#252019}.formula{background:#252019;border-left-color:#4BBFC4}.chip{background:#1B1714;border-color:#352E28;color:#4BBFC4}.chip-plain{border-color:#352E28;color:#EDE8E2}.venn-bg{stroke:#352E28}.circle-a{fill:#1A3335;stroke:#4BBFC4}.circle-b{fill:#1A3F25;stroke:#4aba7a}.warn{background:#2A1E10;border-left-color:#E09050;color:#E09050}button{background:#1B1714;color:#EDE8E2;border-color:#352E28}button.active{background:#1A3335;color:#4BBFC4;border-color:#4BBFC4}}
+label{display:block;font-size:12px;color:#9A8C85;margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+input{width:100%;height:38px;border:1px solid #E3D9D1;border-radius:8px;padding:0 12px;font-family:'JetBrains Mono','Fira Code',monospace;font-size:14px;background:#FAF8F5;color:#2A201C;outline:none;transition:border-color 160ms}
+input:focus{border-color:#0C7075}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+button{height:36px;padding:0 14px;background:#FAF8F5;color:#2A201C;border:1px solid #E3D9D1;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;transition:all 160ms;white-space:nowrap}
+button:hover{border-color:#0C7075;color:#0C7075}
+button.active{background:#E8F5F5;color:#0C7075;border-color:#0C7075}
+.err{font-size:12px;color:#B5600D;min-height:18px;margin-bottom:8px}
+svg{width:100%;max-height:200px;display:block;margin-bottom:16px}
+.stats{display:none;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.stat{background:#F2EDE7;border-radius:8px;padding:.75rem;text-align:center}
+.stat-label{font-size:11px;color:#9A8C85;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.stat-value{font-size:13px;font-weight:500;font-family:monospace}
+.formula{display:none;background:#F2EDE7;border-left:3px solid #0C7075;border-radius:0 8px 8px 0;padding:.6rem 1rem;font-size:13px;color:#6B5E57;margin-bottom:16px}
+.result-label{display:none;font-size:12px;color:#9A8C85;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px}
+.chip{background:#FAF8F5;border:1px solid #0C7075;border-radius:8px;padding:7px 10px;font-family:monospace;font-size:13px;color:#0C7075;font-weight:500}
+.chip-plain{background:#FAF8F5;border:1px solid #E3D9D1;border-radius:8px;padding:7px 10px;font-family:monospace;font-size:13px}
+.warn{display:none;background:#FDF0E4;border-left:3px solid #B5600D;border-radius:0 8px 8px 0;padding:.6rem 1rem;font-size:13px;color:#B5600D;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="row">
+  <div><label>Set A</label><input id="inp-a" type="text" value="1, 2, 3, 4, 5" placeholder="e.g. 1, 2, 3"></div>
+  <div><label>Set B</label><input id="inp-b" type="text" value="3, 4, 5, 6, 7" placeholder="e.g. 3, 4, 5"></div>
+</div>
+<div class="btns">
+  <button onclick="setOp('union')" id="btn-union">A ∪ B — union</button>
+  <button onclick="setOp('intersection')" id="btn-intersection">A ∩ B — intersection</button>
+  <button onclick="setOp('diff-ab')" id="btn-diff-ab">A − B — difference</button>
+  <button onclick="setOp('diff-ba')" id="btn-diff-ba">B − A — difference</button>
+  <button onclick="setOp('complement-a')" id="btn-complement-a">Aᶜ — complement</button>
+  <button onclick="setOp('complement-b')" id="btn-complement-b">Bᶜ — complement</button>
+</div>
+<div class="err" id="err"></div>
+<svg viewBox="0 0 500 200" aria-hidden="true">
+  <defs>
+    <clipPath id="clip-a"><ellipse cx="175" cy="100" rx="130" ry="85"/></clipPath>
+    <clipPath id="clip-b"><ellipse cx="325" cy="100" rx="130" ry="85"/></clipPath>
+  </defs>
+  <rect x="10" y="10" width="480" height="180" rx="8" fill="none" stroke="#E3D9D1" stroke-width="1" class="venn-bg"/>
+  <text x="28" y="32" font-size="13" fill="#9A8C85" font-family="sans-serif">U</text>
+  <ellipse cx="175" cy="100" rx="130" ry="85" fill="#D6EFEF" fill-opacity="0.5" stroke="#0C7075" stroke-width="1.5" class="circle-a"/>
+  <ellipse cx="325" cy="100" rx="130" ry="85" fill="#D6F0E0" fill-opacity="0.5" stroke="#2E8B57" stroke-width="1.5" class="circle-b"/>
+  <ellipse id="hl-a" cx="175" cy="100" rx="130" ry="85" fill="#0C7075" fill-opacity="0"/>
+  <ellipse id="hl-b" cx="325" cy="100" rx="130" ry="85" fill="#2E8B57" fill-opacity="0"/>
+  <ellipse id="hl-inter" cx="325" cy="100" rx="130" ry="85" fill="#0C7075" fill-opacity="0" clip-path="url(#clip-a)"/>
+  <ellipse id="hl-inter-mask" cx="325" cy="100" rx="130" ry="85" fill="white" fill-opacity="0" clip-path="url(#clip-a)"/>
+  <rect id="hl-u" x="10" y="10" width="480" height="180" rx="8" fill="#F2EDE7" fill-opacity="0"/>
+  <ellipse id="hl-a-mask" cx="175" cy="100" rx="130" ry="85" fill="white" fill-opacity="0"/>
+  <ellipse id="hl-b-mask" cx="325" cy="100" rx="130" ry="85" fill="white" fill-opacity="0"/>
+  <text x="105" y="105" text-anchor="middle" font-size="15" font-weight="500" fill="#0C7075" font-family="sans-serif">A</text>
+  <text x="395" y="105" text-anchor="middle" font-size="15" font-weight="500" fill="#2E8B57" font-family="sans-serif">B</text>
+  <text x="250" y="105" text-anchor="middle" font-size="12" fill="#9A8C85" font-family="sans-serif">A∩B</text>
+</svg>
+<div class="stats" id="stats"></div>
+<div class="formula" id="formula"></div>
+<div class="result-label" id="result-label"></div>
+<div class="grid" id="result-grid"></div>
+<div class="warn" id="warn"></div>
+<script>
+let currentOp='union';
+function parse(id){return[...new Map(document.getElementById(id).value.split(',').map(s=>s.trim()).filter(Boolean).map(s=>[s.toLowerCase(),s])).values()];}
+function chip(text,accent){const d=document.createElement('div');d.className=accent?'chip':'chip-plain';d.textContent=text;return d;}
+function statCard(label,value,color){const d=document.createElement('div');d.className='stat';d.innerHTML=`<div class="stat-label">${label}</div><div class="stat-value" style="color:${color}">${value}</div>`;return d;}
+function resetVenn(){['hl-a','hl-b','hl-inter','hl-inter-mask','hl-u','hl-a-mask','hl-b-mask'].forEach(id=>document.getElementById(id).setAttribute('fill-opacity','0'));}
+function highlightVenn(op){
+  resetVenn();
+  if(op==='union'){document.getElementById('hl-a').setAttribute('fill-opacity','0.35');document.getElementById('hl-b').setAttribute('fill-opacity','0.35');}
+  else if(op==='intersection'){document.getElementById('hl-inter').setAttribute('fill-opacity','0.55');}
+  else if(op==='diff-ab'){document.getElementById('hl-a').setAttribute('fill-opacity','0.45');document.getElementById('hl-inter-mask').setAttribute('fill-opacity','1');}
+  else if(op==='diff-ba'){document.getElementById('hl-b').setAttribute('fill-opacity','0.45');document.getElementById('hl-inter-mask').setAttribute('fill-opacity','1');}
+  else if(op==='complement-a'){document.getElementById('hl-u').setAttribute('fill-opacity','0.6');document.getElementById('hl-a-mask').setAttribute('fill-opacity','1');}
+  else if(op==='complement-b'){document.getElementById('hl-u').setAttribute('fill-opacity','0.6');document.getElementById('hl-b-mask').setAttribute('fill-opacity','1');}
+}
+function setOp(op){
+  currentOp=op;
+  document.querySelectorAll('button[id^="btn-"]').forEach(b=>b.classList.remove('active'));
+  document.getElementById('btn-'+op).classList.add('active');
+  compute();
+}
+function compute(){
+  const err=document.getElementById('err'),stats=document.getElementById('stats'),formula=document.getElementById('formula'),rLabel=document.getElementById('result-label'),rGrid=document.getElementById('result-grid'),warn=document.getElementById('warn');
+  err.textContent='';warn.style.display='none';
+  const A=parse('inp-a'),B=parse('inp-b');
+  if(!A.length||!B.length){err.textContent='Both sets need at least one element.';return;}
+  const setA=new Set(A.map(x=>x.toLowerCase())),setB=new Set(B.map(x=>x.toLowerCase()));
+  const inter=A.filter(a=>setB.has(a.toLowerCase()));
+  let result=[],opName='',formulaText='';
+  if(currentOp==='union'){result=[...A,...B.filter(b=>!setA.has(b.toLowerCase()))];opName='A ∪ B (union)';formulaText=`n(A∪B) = n(A) + n(B) − n(A∩B) = ${A.length} + ${B.length} − ${inter.length} = ${result.length}`;}
+  else if(currentOp==='intersection'){result=inter;opName='A ∩ B (intersection)';formulaText=`Elements in BOTH A and B.  n(A∩B) = ${result.length}`;}
+  else if(currentOp==='diff-ab'){result=A.filter(a=>!setB.has(a.toLowerCase()));opName='A − B (difference)';formulaText=`n(A−B) = n(A) − n(A∩B) = ${A.length} − ${inter.length} = ${result.length}`;}
+  else if(currentOp==='diff-ba'){result=B.filter(b=>!setA.has(b.toLowerCase()));opName='B − A (difference)';formulaText=`n(B−A) = n(B) − n(A∩B) = ${B.length} − ${inter.length} = ${result.length}`;}
+  else if(currentOp==='complement-a'){result=B.filter(b=>!setA.has(b.toLowerCase()));opName='Aᶜ (complement of A)';formulaText=`n(Aᶜ) = n(U) − n(A∩U) = ${result.length}. Using B as U.`;warn.style.display='block';warn.textContent='Complement needs a Universal set U. Using B as U here. In exam questions U is always defined explicitly.';}
+  else if(currentOp==='complement-b'){result=A.filter(a=>!setB.has(a.toLowerCase()));opName='Bᶜ (complement of B)';formulaText=`n(Bᶜ) = n(U) − n(B∩U) = ${result.length}. Using A as U.`;warn.style.display='block';warn.textContent='Complement needs a Universal set U. Using A as U here. In exam questions U is always defined explicitly.';}
+  highlightVenn(currentOp);
+  stats.innerHTML='';stats.style.display='grid';
+  stats.appendChild(statCard('Set A  n='+A.length,'{'+A.join(', ')+'}','#0C7075'));
+  stats.appendChild(statCard('Set B  n='+B.length,'{'+B.join(', ')+'}','#2E8B57'));
+  stats.appendChild(statCard('A∩B  n='+inter.length,inter.length?'{'+inter.join(', ')+'}':'∅','#9A8C85'));
+  formula.style.display='block';
+  formula.innerHTML=`<strong>${opName}</strong><br><span>${formulaText}</span>`;
+  rLabel.style.display='block';rLabel.textContent='Result: '+opName;
+  rGrid.innerHTML='';
+  if(!result.length){const e=document.createElement('div');e.style.cssText='font-family:monospace;font-size:14px;color:#9A8C85;padding:8px 0';e.textContent='∅ (empty set)';rGrid.appendChild(e);}
+  else result.forEach(el=>rGrid.appendChild(chip(el,true)));
+}
+document.getElementById('inp-a').addEventListener('input',compute);
+document.getElementById('inp-b').addEventListener('input',compute);
+['inp-a','inp-b'].forEach(id=>document.getElementById(id).addEventListener('keydown',e=>{if(e.key==='Enter')compute();}));
+setOp('union');
+</script>
+</body>
+</html>
