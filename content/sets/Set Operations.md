@@ -39,10 +39,10 @@ $$\text{x ∈ A ∩ B if and only if x ∈ A and x ∈ B}$$
 ### Difference
 the `Difference` is just as subtracting two numbers but no negative numbers.
 
-again taking from first example  $A = \{1,2,3,4,5\}$ and $B = \{1,7,8,9,3\}$, A\B would be like taking a intersection and then returning what ever is left. so the answer will be  $\{2,4,5\}$
+again taking from first example  $A = \{1,2,3,4,5\}$ and $B = \{1,7,8,9,3\}$, A \ B would be like taking a intersection and then returning what ever is left. so the answer will be  $\{2,4,5\}$
 
 >[!Note]
->the symbol for difference is \
+>the difference of two sets can be represent in two ways. either `A - B` or `A \ B`
 
 <iframe src="/static/set-operations.html"
   width="100%"
@@ -50,6 +50,39 @@ again taking from first example  $A = \{1,2,3,4,5\}$ and $B = \{1,7,8,9,3\}$, A\
   frameborder="0"
   style="border-radius:12px;border:1px solid #E3D9D1;">
 </iframe>
+
+
+$$S −T ={x:x∈(S∩(T^c))},$$
+Notice how intersection and complementation can be used together to create the difference operation.
+
+let $S = \{1,2,3,4,5,6\}$ and $T = \{3,5,6,8,9,13\}$. their difference will be $S-T = \{1,2,4\}$. Now lets find $T^c$  so we can verify if the above equation is correct. 
+
+$T^c = U - T$ and U is equal to $\{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15\}$ so the answer to  $T^c$  would be $\{1,2,4,7,10,11,12,14,15\}$. now $S \cap T^c$  is equal to `{1, 2, 4}`. 
+
+thus we proved that the equation given above is very much true.
+
+### Operator Precedence Rules
+
+1. Other things being equal, operations are per formed left-to-right.
+2. Operations between parenthesis are done first, starting with the innermost of nested parenthesis. 
+3. All complementation's are computed next. (iv) All intersections are done next. 
+4. All unions are performed next. 
+5. Tests of set membership and computations, equality or inequality are performed last.
+
+Special operations like the set difference or the symmetric difference, defined below, are not included in the precedence rules and thus always use paren thesis.
+
+##### Operator precedence
+_`Since complementation is done before intersection the symbolic definition of the difference of sets can be rewritten:`_
+$$S −T =\{x:x∈S∩T^c\}$$
+If we were to take the set operations
+$$A∪B∩C^c$$
+
+and put in the parenthesis we would get
+$$(A∪(B ∩(C^c)))$$
+
+##### Symmetric difference
+`_The symmetric difference of two sets S and T is the set of objects that are in one and only one of the sets. The symmetric difference is written S∆T. In curly brace notation:_`
+$$S∆T ={(S−T)∪(T −S)}$$
 
 ## Related posts
 
