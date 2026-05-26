@@ -81,7 +81,7 @@ and put in the parenthesis we would get
 $$(A∪(B ∩(C^c)))$$
 
 ##### Symmetric difference
-`_The symmetric difference of two sets S and T is the set of objects that are in one and only one of the sets. The symmetric difference is written S∆T. In curly brace notation:_`
+_`The symmetric difference of two sets S and T is the set of objects that are in one and only one of the sets. The symmetric difference is written S∆T. In curly brace notation:`_
 $$S∆T ={(S−T)∪(T −S)}$$
 
 ## Related posts
